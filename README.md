@@ -38,7 +38,9 @@ O si quieres la rama de desarrollo general:
 git checkout -b develop origin/develop
 
 🧩 5️⃣ Instalar dependencias del proyecto
+
 📦 Backend
+
 cd backend
 npm install
 
@@ -53,7 +55,9 @@ npm install
 Esto instalará todas las librerías necesarias (express, axios, react, etc.) en ambos lados.
 
 ⚙️ 6️⃣ Iniciar los servidores
-Backend
+
+## Backend
+
 cd backend
 npm run dev
 
@@ -63,7 +67,7 @@ Debe mostrar algo como:
 Servidor corriendo en http://localhost:5002
 Conectado a MySQL
 
-Frontend
+## Frontend
 
 En otra terminal:
 
