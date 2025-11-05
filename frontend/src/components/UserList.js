@@ -11,6 +11,8 @@ function UserForm({ initial, onSave, onCancel }) {
   const [nombre, setNombre] = useState(initial.nombre || '');
   const [email, setEmail] = useState(initial.email || '');
   const [telefono, setTelefono] = useState(initial.telefono || '');
+  const [password, setPassword] = useState('');
+
 
   // Cada vez que cambian los valores iniciales (por ejemplo al editar), actualiza el formulario
   useEffect(() => {
@@ -20,16 +22,19 @@ function UserForm({ initial, onSave, onCancel }) {
   }, [initial]);
 
   // Envía los datos al componente principal (UserList)
-  const submit = (e) => {
-    e.preventDefault();
-    onSave({ nombre, email, telefono });
-  };
+const submit = (e) => {
+  e.preventDefault();
+  onSave({ nombre, email, telefono, password });
+};
+
 
   return (
     <form onSubmit={submit} style={{ marginBottom: 16 }}>
       <input placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} required />
       <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} type="email" required />
       <input placeholder="Teléfono" value={telefono} onChange={e => setTelefono(e.target.value)} />
+      <input type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
+
       <button type="submit">Guardar</button>
       {onCancel && <button type="button" onClick={onCancel}>Cancelar</button>}
     </form>
@@ -62,16 +67,17 @@ export default function UserList() {
   useEffect(() => { fetchUsers(); }, []);
 
   // ✅ Crear usuario (POST)
-  const handleCreate = async (data) => {
-    try {
-      await axios.post('http://localhost:5002/api/usuarios', data);
-      setShowCreate(false);
-      fetchUsers(); // vuelve a cargar la lista
-    } catch (err) {
-      console.error(err);
-      alert('Error creando usuario: ' + (err.response?.data?.error || err.message));
-    }
-  };
+const handleCreate = async (data) => {
+  try {
+    await axios.post('http://localhost:5002/api/usuarios', data);
+    setShowCreate(false);
+    fetchUsers();
+  } catch (err) {
+    console.error(err);
+    alert('Error creando usuario: ' + (err.response?.data?.error || err.message));
+  }
+};
+
 
   // ✅ Preparar edición (mostrar formulario con los datos)
   const startEdit = (user) => setEditing(user);
