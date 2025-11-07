@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import UserList from "./components/UserList";
 import Login from "./components/Login";
-import "../styles/theme.css";
+import Header from "./components/Header";
+import "./styles/theme.css";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -15,25 +16,38 @@ function App() {
   };
 
   if (!user) {
-    return <Login onLoginSuccess={handleLoginSuccess} />;
+    return (
+      <div className="app-bg">
+        <Header />
+        <div className="card login-card">
+          <Login onLoginSuccess={handleLoginSuccess} />
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <h1>Gestión de Usuarios</h1>
-      <p>Bienvenido, {user.nombre} ({user.rol})</p>
-      <button onClick={handleLogout}>Cerrar sesión</button>
+    <div className="app-bg">
+      <Header />
+      <div className="card">
+        <p className="welcome">
+          Bienvenido, <strong>{user.nombre}</strong> ({user.rol})
+        </p>
+        <button className="btn logout" onClick={handleLogout}>
+          Cerrar sesión
+        </button>
+      </div>
 
       {user.rol === "admin" ? (
-        <>
-          <h3>Panel de administrador</h3>
+        <div className="card">
+          <h2>Panel de administrador</h2>
           <UserList />
-        </>
+        </div>
       ) : (
-        <>
-          <h3>Panel de usuario</h3>
+        <div className="card">
+          <h2>Panel de usuario</h2>
           <p>Solo puedes ver tu propia información:</p>
-          <table border="1" cellPadding="10">
+          <table className="table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -49,7 +63,7 @@ function App() {
               </tr>
             </tbody>
           </table>
-        </>
+        </div>
       )}
     </div>
   );

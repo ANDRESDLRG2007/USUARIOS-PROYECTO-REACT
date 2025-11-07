@@ -4,8 +4,11 @@ import "../styles/theme.css";
 function Header() {
   return (
     <header className="header">
-      <img src=".\logo KairoSoft.png" alt="KairoSoft" />
-      <h1>KairoSoft - Gestión de Usuarios</h1>
+      <img src="/logo.png" alt="KairoSoft" className="logo" />
+      <div className="brand">
+        <h1>KairoSoft</h1>
+        <p>Gestión de Usuarios</p>
+      </div>
     </header>
   );
 }
