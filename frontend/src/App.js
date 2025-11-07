@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import UserList from "./components/UserList";
 import Login from "./components/Login";
+import "../styles/theme.css";
 
 function App() {
   const [user, setUser] = useState(null);

@@ -1,0 +1,402 @@
+/* =========================
+   KAIROSOFT - styles.css
+   Paleta y estilo base
+   ========================= */
+
+/* Reset / Normalize (sencillo) */
+* { box-sizing: border-box; }
+:where(html,body,#root) { height: 100%; }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", "Montserrat", "Raleway", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.45;
+  font-size: 16px; /* base for clamp calculations */
+}
+
+/* =========================
+   Variables de diseño
+   ========================= */
+:root{
+  /* Paleta */
+  --bg-main: #1E2A38;        /* Fondo principal */
+  --accent: #3A6EA5;         /* Acento principal (botones/enlaces) */
+  --accent-2: #A0C4FF;       /* Secundario azul claro */
+  --card-bg: #F8FAFC;        /* Fondo tarjetas */
+  --text-primary: #FFFFFF;   /* Texto principal */
+  --text-secondary: #C9D1D9; /* Texto secundario */
+  --success: #7BD389;        /* Éxito */
+  --danger: #FF6B6B;         /* Error/advertencia */
+
+  /* Layout */
+  --max-width: 1200px;
+  --container-padding: 2rem;
+  --radius-lg: 14px;
+  --radius-md: 8px;
+  --radius-sm: 6px;
+
+  /* Elevación */
+  --shadow-soft: 0 6px 24px rgba(2,12,27,0.45);
+  --shadow-subtle: 0 3px 10px rgba(2,12,27,0.25);
+
+  /* Typo scales (desktop-first) */
+  --h1-size: clamp(28px, 3.4vw, 42px);
+  --h2-size: clamp(22px, 2.6vw, 32px);
+  --base-size: 16px;
+  --small-size: 14px;
+
+  /* Spacing */
+  --gap: 1.25rem;
+  --gap-sm: 0.75rem;
+  --gap-lg: 2rem;
+}
+
+/* Prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* =========================
+   Contenedor principal
+   ========================= */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem var(--container-padding);
+}
+
+/* =========================
+   Header / Navbar
+   Desktop-first: logo + nav a la derecha
+   ========================= */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, rgba(30,42,56,0.96), rgba(30,42,56,0.88));
+  z-index: 40;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Branding (logo) */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+/* Si usas <img src="/logo.png">:
+   Escala pensada para PC pero responsive con clamp */
+.brand .logo-img {
+  height: clamp(40px, 6vw, 72px); /* asegura buena escala en PC */
+  width: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* Alternativa con fondo (si quieres usar como fondo CSS):
+   .brand .logo-bg { background-image: url('/logo.png'); } */
+
+/* Nombre de la empresa */
+.brand .name {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: clamp(16px, 1.6vw, 20px);
+  color: var(--text-primary);
+}
+
+/* Navegación principal (desktop) */
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Links nav */
+.nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+.nav a:hover,
+.nav a:focus {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.03);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* CTA en nav */
+.nav .cta {
+  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 80%, black 10%));
+  color: var(--text-primary);
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow-subtle);
+}
+.nav .cta:hover { filter: brightness(1.02); transform: translateY(-2px); }
+
+/* =========================
+   Hero principal
+   ========================= */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: var(--gap-lg);
+  align-items: center;
+  padding: 2.25rem 0;
+  min-height: clamp(340px, 50vh, 520px);
+}
+
+/* Texto hero */
+.hero .title {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: var(--h1-size);
+  margin: 0 0 0.6rem 0;
+  line-height: 1.04;
+}
+.hero .subtitle {
+  color: var(--text-secondary);
+  font-size: var(--base-size);
+  max-width: 60ch;
+  margin-bottom: 1.25rem;
+}
+
+/* Hero image / tarjeta derecha */
+.hero .panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* =========================
+   Sistema de tarjetas (cards)
+   ========================= */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  margin-top: var(--gap-lg);
+}
+
+.card {
+  background: var(--card-bg);
+  color: #0b1720;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  box-shadow: 0 6px 20px rgba(2,12,27,0.06);
+  border: 1px solid rgba(2,12,27,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.card .card-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.card .card-desc {
+  color: #23414f;
+  font-size: 0.95rem;
+}
+
+/* Small helper for icons inside cards */
+.card .icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--accent-2), var(--accent));
+  display: inline-grid;
+  place-items: center;
+  color: white;
+  font-weight: 700;
+}
+
+/* =========================
+   Botones
+   ========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  font-size: 0.95rem;
+}
+
+/* Primary / accent */
+.btn--primary {
+  background: var(--accent);
+  color: var(--text-primary);
+  box-shadow: 0 8px 26px rgba(58,110,165,0.18);
+}
+.btn--primary:hover { transform: translateY(-3px); }
+
+/* Secondary - subtle on dark bg */
+.btn--secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Success and Danger */
+.btn--success { background: var(--success); color: #06321a; }
+.btn--danger  { background: var(--danger); color: #2b0b0b; }
+
+/* Ghost link */
+.btn--ghost {
+  background: transparent;
+  color: var(--accent-2);
+  border: 1px dashed rgba(160,196,255,0.18);
+}
+
+/* Small variation */
+.btn--sm { padding: 0.45rem 0.6rem; font-size: 0.9rem; border-radius: 8px; }
+
+/* Focus visible (accesibilidad) */
+.btn:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 40%, white 10%);
+  outline-offset: 2px;
+}
+
+/* =========================
+   Formularios
+   ========================= */
+.input,
+select,
+textarea {
+  background: white;
+  color: #0b1720;
+  border: 1px solid rgba(2,12,27,0.06);
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  width: 100%;
+  box-shadow: none;
+}
+.input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(58,110,165,0.08);
+  outline: none;
+}
+
+/* Form label */
+.label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
+}
+
+/* Form note / secondary text */
+.form-note { color: var(--text-secondary); font-size: 0.9rem; }
+
+/* Error helper */
+.input--error { border-color: var(--danger); }
+.help--error { color: var(--danger); font-weight: 700; }
+
+/* =========================
+   Tables / lists (responsive) 
+   ========================= */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+  color: var(--text-primary);
+  overflow: hidden;
+  border-radius: 10px;
+}
+.table th,
+.table td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.table th { color: var(--text-primary); font-weight: 700; }
+
+/* Simple responsive table wrapper */
+.table-wrap { overflow-x: auto; border-radius: 12px; }
+
+/* =========================
+   Footer
+   ========================= */
+.footer {
+  padding: 2rem 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  margin-top: 3rem;
+}
+
+/* =========================
+   Responsividad (mobile / tablet)
+   ========================= */
+/* Adjust grid for smaller widths: single column hero, 1 or 2 card cols */
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr; gap: 1.25rem; padding-bottom: 1rem; }
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+  .container { padding: 1.25rem; }
+  .nav { display: none; } /* puedes reemplazar por un hamburger en JS */
+}
+
+/* Mobile / small */
+@media (max-width: 720px) {
+  :root { --container-padding: 1rem; }
+  .card-grid { grid-template-columns: 1fr; }
+  .brand .name { display: none; } /* ahorrar espacio en móvil */
+  .header { padding: 0.6rem 0.6rem; }
+  .hero { padding: 1rem 0; min-height: auto; }
+  .brand .logo-img { height: clamp(36px, 8vw, 56px); }
+  .btn { font-size: 0.95rem; padding: 0.55rem 0.8rem; }
+}
+
+/* Monitores muy grandes: escalar un poco para mejor presencia en PC */
+@media (min-width: 1600px) {
+  :root {
+    --max-width: 1400px;
+    --h1-size: 48px;
+  }
+  .brand .logo-img { height: 84px; }
+}
+
+/* =========================
+   Utilities rápidas
+   ========================= */
+.u-row { display:flex; gap: var(--gap); align-items:center; }
+.u-col { flex: 1 1 0%; }
+.muted { color: var(--text-secondary); }
+.center { text-align: center; }
+.round { border-radius: 999px; }
+.shadow { box-shadow: var(--shadow-subtle); }
+
+/* =========================
+   Sugerencias de uso para el logo (CSS)
+   - Si el logo está en /public/logo.png -> usar <img class="logo-img" src="/logo.png">
+   - Si deseas usar un ícono cuadrado tipo app: .app-icon { width:56px;height:56px;border-radius:12px;background:var(--accent);display:grid;place-items:center;}
+   ========================= */
