@@ -108,34 +108,43 @@ const handleCreate = async (data) => {
 
   // ✅ Render: muestra tabla, formularios y botones
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Usuarios</h2>
-
-      {/* Botón para crear */}
-      {!showCreate && !editing && (
-        <button onClick={() => setShowCreate(true)}>Crear usuario</button>
-      )}
+    <div className="table-responsive">
+      {/* Botón para mostrar formulario de creación */}
+      <button 
+        className="btn btn-primary" 
+        onClick={() => setShowCreate(true)}
+        style={{ marginBottom: '1rem' }}
+      >
+        + Nuevo Usuario
+      </button>
 
       {/* Formulario de creación */}
       {showCreate && (
-        <div>
-          <h3>Crear usuario</h3>
-          <UserForm initial={{}} onSave={handleCreate} onCancel={() => setShowCreate(false)} />
-        </div>
+        <UserForm 
+          initial={{}} 
+          onSave={handleCreate}
+          onCancel={() => setShowCreate(false)}
+        />
       )}
 
       {/* Formulario de edición */}
       {editing && (
-        <div>
-          <h3>Editar usuario #{editing.id}</h3>
-          <UserForm initial={editing} onSave={handleUpdate} onCancel={() => setEditing(null)} />
-        </div>
+        <UserForm 
+          initial={editing} 
+          onSave={handleUpdate}
+          onCancel={() => setEditing(null)}
+        />
       )}
 
-      {/* Tabla de usuarios */}
-      <table border="1" cellPadding="8" style={{ marginTop: 12 }}>
+      <table className="users-table">
         <thead>
-          <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Acciones</th></tr>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+          </tr>
         </thead>
         <tbody>
           {users.map(u => (

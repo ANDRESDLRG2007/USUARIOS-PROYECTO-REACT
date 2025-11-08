@@ -7,7 +7,7 @@ function Header() {
       <img src="/logo.png" alt="KairoSoft" className="logo" />
       <div className="brand">
         <h1>KairoSoft</h1>
-        <p>Gestión de Usuarios</p>
+        <p>Plataforma Educativa Virtual</p>
       </div>
     </header>
   );

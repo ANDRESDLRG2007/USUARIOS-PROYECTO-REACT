@@ -2,17 +2,18 @@ const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',       // el usuario por defecto de XAMPP
-  password: '',       // deja vacío si no tienes contraseña en phpMyAdmin
-  database: 'usuarios_app'
+  user: 'root', 
+  password: '', 
+  database: 'usuarios_app',
+  port: 3306
 });
 
 connection.connect((err) => {
   if (err) {
-    console.error('❌ Error al conectar a MySQL:', err);
+    console.error('Error conectando a MySQL:', err);
     return;
   }
-  console.log('✅ Conectado a MySQL');
+  console.log('Conectado exitosamente a MySQL');
 });
 
 module.exports = connection;
