@@ -82,6 +82,8 @@ Y abre http://localhost:3000
 En el nuevo equipo, asegúrate de tener una base de datos local (MySQL o XAMPP).
 Luego ejecuta en MySQL:
 
+https://drive.google.com/file/d/18qY-w-8b3lG3WTzdCJmMdn1C1h_SBc1B/view?usp=sharing
+
 CREATE DATABASE usuarios_app;
 USE usuarios_app;
 
