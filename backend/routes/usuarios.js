@@ -42,7 +42,6 @@ router.put('/:id', (req, res) => {
 
   let query, params;
 
-  // Si incluye password, también se actualiza
   if (password) {
     query = 'UPDATE usuarios SET nombre = ?, email = ?, telefono = ?, password = ? WHERE id = ?';
     params = [nombre, email, telefono, password, id];
