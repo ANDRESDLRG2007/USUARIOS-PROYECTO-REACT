@@ -17,7 +17,8 @@ function Login({ onLoginSuccess }) {
         email,
         password
       });
-
+      console.log('===== RESPUESTA COMPLETA =====');
+      console.log('res.data:', res.data);
       if (res.data.success) {
         onLoginSuccess(res.data.user);
       } else {
