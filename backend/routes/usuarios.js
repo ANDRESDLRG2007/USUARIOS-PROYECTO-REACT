@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/database');
 
-// Crear usuario (POST)
 router.post('/', (req, res) => {
   const { nombre, email, telefono, password } = req.body;
 
@@ -25,7 +24,7 @@ router.post('/', (req, res) => {
   });
 });
 
-// Listar usuarios (GET)
+
 router.get('/', (req, res) => {
   db.query('SELECT * FROM usuarios', (err, results) => {
     if (err) {
@@ -36,7 +35,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// Actualizar usuario (PUT)
+
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const { nombre, email, telefono, password } = req.body;
@@ -61,7 +60,7 @@ router.put('/:id', (req, res) => {
   });
 });
 
-// Eliminar usuario (DELETE)
+
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
   const query = 'DELETE FROM usuarios WHERE id = ?';
