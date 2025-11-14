@@ -143,8 +143,8 @@ git pull
 
 Esto asegura que tienes la versión más reciente de todo.
 
-
-*Componente Login – Descripción*
+-------
+#*Componente Login – Descripción*
 
 Este componente de React implementa un formulario de inicio de sesión que se comunica con un servidor backend para autenticar a un usuario.
 
