@@ -142,3 +142,48 @@ git pull
 
 
 Esto asegura que tienes la versión más reciente de todo.
+
+
+Componente Login – Descripción
+
+Este componente de React implementa un formulario de inicio de sesión que se comunica con un servidor backend para autenticar a un usuario.
+
+Funcionalidad principal
+
+Manejo del estado del formulario
+
+email: almacena el correo ingresado por el usuario.
+
+password: almacena la contraseña.
+
+error: guarda mensajes de error que provengan del servidor o de fallos de conexión.
+
+loading: indica si la petición al servidor está en proceso para deshabilitar inputs y botón.
+
+Envía una solicitud al servidor
+
+Al enviar el formulario, se ejecuta handleSubmit.
+
+Se hace una petición POST a http://localhost:5002/api/login usando Axios.
+
+Se envían los campos email y password.
+
+Procesa la respuesta del backend
+
+Si el servidor responde con success: true, se ejecuta onLoginSuccess y se pasa la información del usuario autenticado.
+
+Si ocurre un error, se muestra un mensaje apropiado en pantalla.
+
+Manejo de errores
+
+Muestra errores provenientes del servidor (por ejemplo, credenciales incorrectas).
+
+Muestra un error genérico en caso de fallos de conexión.
+
+Interfaz del usuario
+
+Formulario con campos para email y contraseña.
+
+Botón de inicio de sesión que se deshabilita mientras la solicitud está en progreso.
+
+Visualización de mensajes de error cuando corresponde.
