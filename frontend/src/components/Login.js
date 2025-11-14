@@ -7,7 +7,7 @@ function Login({ onLoginSuccess }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError("");
     setLoading(true);
@@ -24,15 +24,15 @@ function Login({ onLoginSuccess }) {
         setError(res.data.error || "Error al iniciar sesión");
       }
     } catch (err) {
-      console.error('Error:', err);
+      console.error("Error:", err);
       setError(
-        err.response?.data?.error || 
+        err.response?.data?.error ||
         "Error de conexión con el servidor"
       );
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   return (
     <div>
