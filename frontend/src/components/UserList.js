@@ -1,27 +1,24 @@
-// ✅ UserList.js
-// Este componente maneja el CRUD (Crear, Leer, Actualizar, Eliminar) de usuarios
-// usando React Hooks y Axios para comunicarse con el backend (API REST).
+
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-// ✅ Subcomponente que muestra el formulario para crear o editar usuarios
+
 function UserForm({ initial, onSave, onCancel }) {
-  // Estados locales del formulario
+
   const [nombre, setNombre] = useState(initial.nombre || '');
   const [email, setEmail] = useState(initial.email || '');
   const [telefono, setTelefono] = useState(initial.telefono || '');
   const [password, setPassword] = useState('');
 
 
-  // Cada vez que cambian los valores iniciales (por ejemplo al editar), actualiza el formulario
+ 
   useEffect(() => {
     setNombre(initial.nombre || '');
     setEmail(initial.email || '');
     setTelefono(initial.telefono || '');
   }, [initial]);
 
-  // Envía los datos al componente principal (UserList)
 const submit = (e) => {
   e.preventDefault();
   onSave({ nombre, email, telefono, password });
@@ -40,19 +37,17 @@ const submit = (e) => {
     </form>
   );
 }
-
-// ✅ Componente principal que muestra la lista y controla todo el CRUD
 export default function UserList() {
-  // Lista de usuarios obtenidos desde el backend
+
   const [users, setUsers] = useState([]);
 
-  // Guarda el usuario que se está editando
+
   const [editing, setEditing] = useState(null);
 
-  // Controla si se está mostrando el formulario de creación
+
   const [showCreate, setShowCreate] = useState(false);
 
-  // ✅ Función para traer usuarios desde el backend (GET)
+
   const fetchUsers = async () => {
     try {
       const res = await axios.get('http://localhost:5002/api/usuarios');
@@ -63,10 +58,9 @@ export default function UserList() {
     }
   };
 
-  // ✅ useEffect: se ejecuta una vez al iniciar el componente
   useEffect(() => { fetchUsers(); }, []);
 
-  // ✅ Crear usuario (POST)
+
 const handleCreate = async (data) => {
   try {
     await axios.post('http://localhost:5002/api/usuarios', data);
@@ -79,10 +73,10 @@ const handleCreate = async (data) => {
 };
 
 
-  // ✅ Preparar edición (mostrar formulario con los datos)
+
   const startEdit = (user) => setEditing(user);
 
-  // ✅ Actualizar usuario (PUT)
+
   const handleUpdate = async (data) => {
     try {
       await axios.put(`http://localhost:5002/api/usuarios/${editing.id}`, data);
@@ -94,7 +88,7 @@ const handleCreate = async (data) => {
     }
   };
 
-  // ✅ Eliminar usuario (DELETE)
+
   const handleDelete = async (id) => {
     if (!window.confirm('¿Eliminar usuario?')) return;
     try {
@@ -106,10 +100,9 @@ const handleCreate = async (data) => {
     }
   };
 
-  // ✅ Render: muestra tabla, formularios y botones
   return (
     <div className="table-responsive">
-      {/* Botón para mostrar formulario de creación */}
+      {}
       <button 
         className="btn btn-primary" 
         onClick={() => setShowCreate(true)}
@@ -118,7 +111,7 @@ const handleCreate = async (data) => {
         + Nuevo Usuario
       </button>
 
-      {/* Formulario de creación */}
+      {}
       {showCreate && (
         <UserForm 
           initial={{}} 
@@ -127,7 +120,7 @@ const handleCreate = async (data) => {
         />
       )}
 
-      {/* Formulario de edición */}
+      {}
       {editing && (
         <UserForm 
           initial={editing} 
